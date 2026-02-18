@@ -9,3 +9,4 @@ Petite application pour la démo sur les APIs utilisant Expres
 4. Relations DB (src/database/index.js)
 5. Mise en place de base de la web API (src/index.js)
 6. Route d'enregistrement (+ validation de formulaire)
+7. 

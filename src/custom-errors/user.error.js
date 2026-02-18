@@ -12,3 +12,11 @@ export class UserTooYoungError extends Error {
 		super('User is too young');
 	}
 }
+
+export class InvalidCredentialsError extends Error {
+	statusCode = 400;
+
+	constructor() {
+		super('Invalid credentials');
+	}
+}
