@@ -31,3 +31,22 @@ Concert.hasMany(Ticket, {
 	as: 'tickets',
 	foreignKey: 'concertId',
 });
+// A ticket is owned by a User
+Ticket.belongsTo(User, {
+	as: 'owner',
+	foreignKey: {
+		allowNull: false,
+		name: 'ownerId',
+	},
+});
+// A User can have multiple Tickets
+User.hasMany(Ticket, {
+	foreignKey: 'ownerId',
+});
+
+export default {
+	User,
+	Concert,
+	Ticket,
+	sequelize,
+};

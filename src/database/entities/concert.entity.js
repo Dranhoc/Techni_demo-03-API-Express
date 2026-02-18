@@ -23,7 +23,7 @@ const Concert = sequelize.define(
 		},
 		price: {
 			type: DataTypes.DOUBLE,
-			defaultValue: false,
+			allowNull: true,
 		},
 	},
 	{
