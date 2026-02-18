@@ -1,4 +1,10 @@
 export const errorHandler = (err, req, res, next) => {
 	console.log(err);
-	res.status(500).send("   --🏴‍☠️ Une erreur s'est produite, veuillez 🏴‍☠️--");
+
+	// récupérer le status dans l'erreur (si on en a un)
+	const statusCode = err.statusCode || 500;
+
+	const message = statusCode === 500 ? 'Internal server error' : err.message;
+
+	res.status(statusCode).json({ message });
 };
