@@ -14,3 +14,12 @@ export const bodyValidator = (dataValidator) => {
 		}
 	};
 };
+
+export const queryValidator = (dataValidator) => {
+	return (req, res, next) => {
+		const { data, success, error } = dataValidator.safeParse(req.query);
+		req.validatedQuery = data;
+		console.log(`   --🚨 ${data} 🚨--`);
+		next();
+	};
+};
