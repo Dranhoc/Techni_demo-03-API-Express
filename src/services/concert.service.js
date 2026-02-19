@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { DateInThePastError, OrganizerNotExists } from '../custom-errors/concert.error.js';
+import { DateInThePastError, DontOrganizeConcertError, OrganizerNotExists } from '../custom-errors/concert.error.js';
 import db from '../database/index.js';
 import { Op } from 'sequelize';
 
@@ -61,6 +61,15 @@ const concertService = {
 			order,
 		});
 		return concerts;
+	},
+	delete: async (id, requester) => {
+		const concert = await db.Concert.findByPk(id);
+		if (requester.role !== 'admin') {
+			if (concert.organizerId !== requester.id) {
+				throw new DontOrganizeConcertError();
+			}
+		}
+		await concert?.destroy();
 	},
 };
 

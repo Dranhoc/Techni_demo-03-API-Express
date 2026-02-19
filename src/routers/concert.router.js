@@ -9,5 +9,6 @@ const concertRouter = Router();
 concertRouter.post('/', connected(['admin', 'organizer']), bodyValidator(createConcertValidator), concertController.create);
 //TODO Ajouter le validator
 concertRouter.get('/', queryValidator(getAllConcertQueryValidator), concertController.getAll);
+concertRouter.delete('/:id', connected(['admin', 'organizer']), concertController.delete);
 
 export default concertRouter;

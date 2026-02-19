@@ -13,3 +13,10 @@ export class OrganizerNotExists extends Error {
 		super(`The organizer with the ID ${id} doesnt exist.`);
 	}
 }
+export class DontOrganizeConcertError extends Error {
+	statusCode = 403;
+
+	constructor() {
+		super(`You don't have the right to delete this concert`);
+	}
+}
